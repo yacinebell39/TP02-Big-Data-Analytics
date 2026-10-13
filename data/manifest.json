@@ -1,0 +1,30 @@
+{
+  "dataset": "New York City Taxi Fare Prediction",
+  "source": "https://www.kaggle.com/competitions/new-york-city-taxi-fare-prediction/data",
+  "license": "Subject to competition rules; educational use permitted, redistribution restricted.",
+  "file": "data/train.csv",
+  "csv_bytes": 5697178298,
+  "csv_sha256": "762e7b58cf987a1cb51af9526edac173446fb26b4f3cd706c8d59514256b98a3",
+  "expected_rows": 55423856,
+  "physical_rows": 55423856,
+  "columns": [
+    "key",
+    "fare_amount",
+    "pickup_datetime",
+    "pickup_longitude",
+    "pickup_latitude",
+    "dropoff_longitude",
+    "dropoff_latitude",
+    "passenger_count"
+  ],
+  "row_count_note": "Header excluded. Logical rows independently checked by Pandas and Dask in the benchmark.",
+  "archive": {
+    "file": "new-york-city-taxi-fare-prediction.zip",
+    "bytes": 1674619075,
+    "sha256": "b708d8b9bb88902dbebfcce01adf76d29b72fc6530a710ac1ce69cb7942e8863",
+    "train_crc32": "00612476",
+    "train_crc_verified": true
+  },
+  "original_csv_unchanged": true,
+  "verified_utc": "2026-10-13T19:00:05Z"
+}
