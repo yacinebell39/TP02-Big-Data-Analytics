@@ -1,0 +1,11 @@
+{
+  "method": "eager",
+  "status": "process_failure",
+  "repeat": 1,
+  "exit_code": 3221225477,
+  "wall_seconds": 40.90002700000332,
+  "peak_rss_bytes": 2225172480,
+  "peak_private_bytes": 2689593344,
+  "sample_interval_seconds": 0.1,
+  "memory_samples": 349
+}
