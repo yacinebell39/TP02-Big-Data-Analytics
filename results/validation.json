@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "full_input": true,
+  "rows": 55423856,
+  "successful_runs_compared": 6,
+  "relative_tolerance": 1e-10,
+  "absolute_tolerance": 1e-06,
+  "integer_counts": "exact equality",
+  "matching_fields": "eight column counts, six numeric sums/means, all passenger fare groups"
+}

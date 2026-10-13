@@ -1,0 +1,16 @@
+{
+  "method": "eager",
+  "budget_mib": 2048,
+  "status": "memory_error",
+  "exception_type": "MemoryError",
+  "message": "",
+  "traceback": "MemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nMemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \".\\benchmark.py\", line 61, in worker\n    record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))\n                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \".\\analysis.py\", line 63, in eager\n    table = pd.read_csv(path, **full_options)\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 872, in read_csv\n    return _read(filepath_or_buffer, kwds)\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 306, in _read\n    return parser.read(nrows)\n           ~~~~~~~~~~~^^^^^^^\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 1950, in read\n    ) = self._engine.read(  # type: ignore[attr-defined]\n        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        nrows\n        ^^^^^\n    )\n    ^\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 279, in read\n    content = self._get_lines(rows)\nMemoryError\n",
+  "processing_seconds": 5.732144299996435,
+  "repeat": 3,
+  "exit_code": 0,
+  "wall_seconds": 6.799176299995452,
+  "peak_rss_bytes": 1643724800,
+  "peak_private_bytes": 2119643136,
+  "sample_interval_seconds": 0.1,
+  "memory_samples": 62
+}

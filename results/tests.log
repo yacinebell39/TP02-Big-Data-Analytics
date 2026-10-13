@@ -1,0 +1,9 @@
+Lazy graph: 1 partitions, 15 -> 9 tasks
+test_known_results_for_all_three_strategies (test_analysis.TaxiReductions.test_known_results_for_all_three_strategies) ... ok
+Lazy graph: 7 partitions, 75 -> 33 tasks
+test_multiple_dask_partitions_and_exact_chunk_boundary (test_analysis.TaxiReductions.test_multiple_dask_partitions_and_exact_chunk_boundary) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.915s
+
+OK

@@ -1,0 +1,147 @@
+{
+  "method": "stream",
+  "budget_mib": 2048,
+  "status": "ok",
+  "summary": {
+    "rows": 55423856,
+    "non_null_counts": {
+      "key": 55423856,
+      "pickup_datetime": 55423856,
+      "fare_amount": 55423856,
+      "pickup_longitude": 55423856,
+      "pickup_latitude": 55423856,
+      "dropoff_longitude": 55423480,
+      "dropoff_latitude": 55423480,
+      "passenger_count": 55423856
+    },
+    "numeric": {
+      "fare_amount": {
+        "sum": 628786173.74,
+        "mean": 11.345045601662937
+      },
+      "pickup_longitude": {
+        "sum": -4018766309.2068653,
+        "mean": -72.50968444358807
+      },
+      "pickup_latitude": {
+        "sum": 2212508791.5464873,
+        "mean": 39.91979178688844
+      },
+      "dropoff_longitude": {
+        "sum": -4018823582.230899,
+        "mean": -72.51120972971923
+      },
+      "dropoff_latitude": {
+        "sum": 2212543089.6438694,
+        "mean": 39.92068144482933
+      },
+      "passenger_count": {
+        "sum": 93410254.0,
+        "mean": 1.6853799201556816
+      }
+    },
+    "fares_by_passengers": [
+      {
+        "passengers": 0.0,
+        "valid_fares": 195416,
+        "fare_sum": 1761742.3700000013,
+        "mean_fare": 9.015343523560002
+      },
+      {
+        "passengers": 1.0,
+        "valid_fares": 38337524,
+        "fare_sum": 430009207.30000037,
+        "mean_fare": 11.216405297848667
+      },
+      {
+        "passengers": 2.0,
+        "valid_fares": 8175243,
+        "fare_sum": 96781970.48999998,
+        "mean_fare": 11.838421254267303
+      },
+      {
+        "passengers": 3.0,
+        "valid_fares": 2432712,
+        "fare_sum": 28074947.62999998,
+        "mean_fare": 11.540596515329385
+      },
+      {
+        "passengers": 4.0,
+        "valid_fares": 1178852,
+        "fare_sum": 13870454.099999987,
+        "mean_fare": 11.766069107911754
+      },
+      {
+        "passengers": 5.0,
+        "valid_fares": 3929346,
+        "fare_sum": 44041683.86000001,
+        "mean_fare": 11.20840054808103
+      },
+      {
+        "passengers": 6.0,
+        "valid_fares": 1174647,
+        "fare_sum": 14243953.190000001,
+        "mean_fare": 12.126156360166076
+      },
+      {
+        "passengers": 7.0,
+        "valid_fares": 15,
+        "fare_sum": 476.83,
+        "mean_fare": 31.788666666666664
+      },
+      {
+        "passengers": 8.0,
+        "valid_fares": 9,
+        "fare_sum": 269.83,
+        "mean_fare": 29.981111111111108
+      },
+      {
+        "passengers": 9.0,
+        "valid_fares": 23,
+        "fare_sum": 850.8399999999999,
+        "mean_fare": 36.993043478260866
+      },
+      {
+        "passengers": 34.0,
+        "valid_fares": 1,
+        "fare_sum": 13.3,
+        "mean_fare": 13.3
+      },
+      {
+        "passengers": 49.0,
+        "valid_fares": 1,
+        "fare_sum": 2.5,
+        "mean_fare": 2.5
+      },
+      {
+        "passengers": 51.0,
+        "valid_fares": 1,
+        "fare_sum": 9.3,
+        "mean_fare": 9.3
+      },
+      {
+        "passengers": 129.0,
+        "valid_fares": 2,
+        "fare_sum": 17.8,
+        "mean_fare": 8.9
+      },
+      {
+        "passengers": 208.0,
+        "valid_fares": 64,
+        "fare_sum": 574.3999999999997,
+        "mean_fare": 8.974999999999996
+      }
+    ]
+  },
+  "chunks": 555,
+  "largest_chunk_rows": 100000,
+  "chunksize": 100000,
+  "processing_seconds": 65.14030220000132,
+  "repeat": 2,
+  "exit_code": 0,
+  "wall_seconds": 66.20468800000526,
+  "peak_rss_bytes": 161398784,
+  "peak_private_bytes": 649297920,
+  "sample_interval_seconds": 0.1,
+  "memory_samples": 609
+}

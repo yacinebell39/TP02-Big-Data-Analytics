@@ -1,0 +1,159 @@
+{
+  "method": "lazy",
+  "budget_mib": 2048,
+  "status": "ok",
+  "summary": {
+    "rows": 55423856,
+    "non_null_counts": {
+      "key": 55423856,
+      "fare_amount": 55423856,
+      "pickup_datetime": 55423856,
+      "pickup_longitude": 55423856,
+      "pickup_latitude": 55423856,
+      "dropoff_longitude": 55423480,
+      "dropoff_latitude": 55423480,
+      "passenger_count": 55423856
+    },
+    "numeric": {
+      "fare_amount": {
+        "sum": 628786173.7400004,
+        "mean": 11.345045601662944
+      },
+      "pickup_longitude": {
+        "sum": -4018766309.206866,
+        "mean": -72.50968444358809
+      },
+      "pickup_latitude": {
+        "sum": 2212508791.546489,
+        "mean": 39.91979178688846
+      },
+      "dropoff_longitude": {
+        "sum": -4018823582.2309,
+        "mean": -72.51120972971924
+      },
+      "dropoff_latitude": {
+        "sum": 2212543089.643871,
+        "mean": 39.920681444829356
+      },
+      "passenger_count": {
+        "sum": 93410254.0,
+        "mean": 1.6853799201556816
+      }
+    },
+    "fares_by_passengers": [
+      {
+        "passengers": 0.0,
+        "valid_fares": 195416,
+        "fare_sum": 1761742.37,
+        "mean_fare": 9.015343523559995
+      },
+      {
+        "passengers": 1.0,
+        "valid_fares": 38337524,
+        "fare_sum": 430009207.3,
+        "mean_fare": 11.216405297848656
+      },
+      {
+        "passengers": 2.0,
+        "valid_fares": 8175243,
+        "fare_sum": 96781970.49,
+        "mean_fare": 11.838421254267304
+      },
+      {
+        "passengers": 3.0,
+        "valid_fares": 2432712,
+        "fare_sum": 28074947.63,
+        "mean_fare": 11.540596515329394
+      },
+      {
+        "passengers": 4.0,
+        "valid_fares": 1178852,
+        "fare_sum": 13870454.1,
+        "mean_fare": 11.766069107911765
+      },
+      {
+        "passengers": 5.0,
+        "valid_fares": 3929346,
+        "fare_sum": 44041683.86,
+        "mean_fare": 11.208400548081029
+      },
+      {
+        "passengers": 6.0,
+        "valid_fares": 1174647,
+        "fare_sum": 14243953.19,
+        "mean_fare": 12.126156360166075
+      },
+      {
+        "passengers": 7.0,
+        "valid_fares": 15,
+        "fare_sum": 476.83,
+        "mean_fare": 31.788666666666664
+      },
+      {
+        "passengers": 8.0,
+        "valid_fares": 9,
+        "fare_sum": 269.83,
+        "mean_fare": 29.981111111111108
+      },
+      {
+        "passengers": 9.0,
+        "valid_fares": 23,
+        "fare_sum": 850.84,
+        "mean_fare": 36.99304347826087
+      },
+      {
+        "passengers": 34.0,
+        "valid_fares": 1,
+        "fare_sum": 13.3,
+        "mean_fare": 13.3
+      },
+      {
+        "passengers": 49.0,
+        "valid_fares": 1,
+        "fare_sum": 2.5,
+        "mean_fare": 2.5
+      },
+      {
+        "passengers": 51.0,
+        "valid_fares": 1,
+        "fare_sum": 9.3,
+        "mean_fare": 9.3
+      },
+      {
+        "passengers": 129.0,
+        "valid_fares": 2,
+        "fare_sum": 17.8,
+        "mean_fare": 8.9
+      },
+      {
+        "passengers": 208.0,
+        "valid_fares": 64,
+        "fare_sum": 574.4,
+        "mean_fare": 8.975
+      }
+    ]
+  },
+  "graph": {
+    "partitions": 339,
+    "tasks_before": 3493,
+    "tasks_after": 1602,
+    "query_expressions": [
+      "FromMapProjectable(633845d).size() // 8",
+      "FromMapProjectable(633845d).count()",
+      "(FromMapProjectable(633845d)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
+      "GroupbyAggregation(frame=FromMapProjectable(633845d)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
+    ]
+  },
+  "graph_build_seconds": 0.3375970999986748,
+  "compute_seconds": 160.10277900000074,
+  "threads": 4,
+  "block_mib": 16,
+  "processing_seconds": 160.44073280000157,
+  "repeat": 2,
+  "exit_code": 0,
+  "wall_seconds": 161.50220879999688,
+  "peak_rss_bytes": 473591808,
+  "peak_private_bytes": 984023040,
+  "sample_interval_seconds": 0.1,
+  "memory_samples": 1480
+}
