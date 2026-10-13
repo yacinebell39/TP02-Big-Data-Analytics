@@ -1,0 +1,26 @@
+{
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cpu_logical": 16,
+  "cpu_physical": 10,
+  "total_ram_bytes": 34194739200,
+  "available_ram_at_start_bytes": 12447657984,
+  "libraries": {
+    "pandas": "3.0.6",
+    "dask": "2026.8.0",
+    "psutil": "7.2.2",
+    "matplotlib": "3.11.2",
+    "pyarrow": "26.0.0"
+  },
+  "input_file": "data/train.csv",
+  "input_bytes": 5697178298,
+  "budget_mib": 2048,
+  "threads": 4,
+  "block_mib": 32,
+  "chunk_rows": 100000,
+  "repeats": 3,
+  "memory_measurement": "100 ms sampled process-tree RSS and private bytes, including imports. RSS is distinct from the Job Object committed-memory cap. Shared memory may be double counted across launcher and worker.",
+  "timing": "Processing time excludes startup/imports; includes CSV parsing, aggregation and lazy graph construction.",
+  "cache_note": "No OS-cache flush. Method order rotated between repeats; identical input and schema.",
+  "run_utc": "2026-10-13T19:01:55Z"
+}
