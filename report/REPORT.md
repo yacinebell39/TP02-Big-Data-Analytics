@@ -29,11 +29,11 @@ Negative fares, unusual passenger counts and invalid-looking coordinates are ret
 
 ## Task 1 - full Pandas loading
 
-analysis.eager calls pd.read_csv on the entire CSV before computing the aggregates. It uses the Python parser because two preliminary full-load trials with the C parser exited with native Windows access-violation status under the cap, without a Python traceback. The exact native cause is not established. Each strategy runs in a fresh process. A Windows Job Object imposes the same 2,048 MiB committed-memory budget on every measured worker, so the full-load attempt demonstrates a real allocation failure without exhausting the whole computer.
+analysis.eager calls pd.read_csv on the entire CSV before computing the aggregates. It uses the Python parser because two preliminary full-load trials with the C parser exited with native Windows access-violation status under the cap, without a Python traceback. The exact native cause is not established. Each strategy runs in a fresh process. A Windows Job Object imposes the same 8,192 MiB committed-memory budget on every measured worker, so the full-load attempt demonstrates a real allocation failure without exhausting the whole computer.
 
 Observed outcome: MemoryError in 3 of 3 full-load attempts. The exact exception and traceback are retained in results/eager_*.json and results/eager_*.log. The duration is time until failure, not time to process all rows.
 
-First exception: MemoryError: allocation failed during pd.read_csv; see the saved traceback.
+First exception: OSError: [Errno 22] Invalid argument
 
 ## Task 2 - 100,000-row Pandas chunks
 
@@ -47,7 +47,7 @@ Dask reads the CSV in 16 MiB blocks, builds reductions without materializing the
 
 ## Fair measurement and practical limits
 
-Machine: 31.85 GiB total RAM, 10 physical / 16 logical CPU cores. The 2 GiB budget is a controlled process allocation limit, not this machine's physical memory capacity. Full Pandas may succeed if that limit is removed.
+Machine: 14.82 GiB total RAM, 6 physical / 12 logical CPU cores. The 8 GiB budget is a controlled process allocation limit, not this machine's physical memory capacity. Full Pandas may succeed if that limit is removed.
 
 Processing time excludes startup and imports, includes parsing and aggregation, and includes graph construction for Dask. psutil samples process-tree RSS and private memory every 100 ms, including imports. A launcher may cause double counting of shared pages. Sampled peaks can miss short spikes. Completed speed comparison is between chunking and Dask, which share the C parser; full-load time is time to failure using the Python parser.
 
@@ -55,9 +55,9 @@ Processing time excludes startup and imports, includes parsing and aggregation, 
 
 | Method | Outcome | Median time | Median peak RSS |
 | --- | --- | --- | --- |
-| Pandas - full load | MemoryError | 5.42 s to failure | 1582.8 MiB |
-| Pandas - 100k chunks | Completed | 65.45 s | 154.1 MiB |
-| Dask - parallel | Completed | 160.20 s | 451.7 MiB |
+| Pandas - full load | MemoryError | 58.14 s to failure | 7851.5 MiB |
+| Pandas - 100k chunks | Completed | 94.36 s | 160.2 MiB |
+| Dask - parallel | Completed | 261.62 s | 463.1 MiB |
 
 ![performance.png](../figures/performance.png)
 
@@ -65,17 +65,17 @@ Three repetitions per method. Each repeat rotates method order to reduce systema
 
 | Run | Status | Seconds | Peak RSS MiB |
 | --- | --- | --- | --- |
-| eager #1 | memory_error | 5.39 | 1582.8 |
-| eager #2 | memory_error | 5.42 | 1594.9 |
-| eager #3 | memory_error | 5.73 | 1567.6 |
-| stream #1 | ok | 65.64 | 154.1 |
-| stream #2 | ok | 65.14 | 153.9 |
-| stream #3 | ok | 65.45 | 154.1 |
-| lazy #1 | ok | 159.60 | 451.1 |
-| lazy #2 | ok | 160.44 | 451.7 |
-| lazy #3 | ok | 160.20 | 456.0 |
+| eager #1 | memory_error | 33.18 | 4832.5 |
+| eager #2 | memory_error | 59.46 | 7854.7 |
+| eager #3 | memory_error | 58.14 | 7851.5 |
+| stream #1 | ok | 95.50 | 160.3 |
+| stream #2 | ok | 92.33 | 160.0 |
+| stream #3 | ok | 94.36 | 160.2 |
+| lazy #1 | ok | 261.62 | 462.9 |
+| lazy #2 | ok | 261.21 | 463.1 |
+| lazy #3 | ok | 268.99 | 463.8 |
 
-In these measurements, Dask was 0.41x as fast as chunking (chunking time / Dask time). A value below 1 means chunking was faster. Dask has scheduling, graph and parsing overhead; its expected advantage must be checked experimentally.
+In these measurements, Dask was 0.36x as fast as chunking (chunking time / Dask time). A value below 1 means chunking was faster. Dask has scheduling, graph and parsing overhead; its expected advantage must be checked experimentally.
 
 # 03 / Memory and lazy execution
 
@@ -136,7 +136,7 @@ python -m venv .venv
 
 .\.venv\Scripts\python.exe -m unittest test_analysis -v
 
-.\.venv\Scripts\python.exe benchmark.py --repeats 3 --budget-mib 2048 --threads 4 --block-mib 16
+.\.venv\Scripts\python.exe benchmark.py --repeats 3 --budget-mib 8192 --threads 4 --block-mib 16
 
 .\.venv\Scripts\python.exe report.py
 

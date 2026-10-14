@@ -1,6 +1,6 @@
 {
   "method": "lazy",
-  "budget_mib": 2048,
+  "budget_mib": 8192,
   "status": "ok",
   "summary": {
     "rows": 55423856,
@@ -138,22 +138,22 @@
     "tasks_before": 3493,
     "tasks_after": 1602,
     "query_expressions": [
-      "FromMapProjectable(633845d).size() // 8",
-      "FromMapProjectable(633845d).count()",
-      "(FromMapProjectable(633845d)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
-      "GroupbyAggregation(frame=FromMapProjectable(633845d)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
+      "FromMapProjectable(0469fc7).size() // 8",
+      "FromMapProjectable(0469fc7).count()",
+      "(FromMapProjectable(0469fc7)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
+      "GroupbyAggregation(frame=FromMapProjectable(0469fc7)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
     ]
   },
-  "graph_build_seconds": 0.3375970999986748,
-  "compute_seconds": 160.10277900000074,
+  "graph_build_seconds": 0.5283272000015131,
+  "compute_seconds": 260.6832538000017,
   "threads": 4,
   "block_mib": 16,
-  "processing_seconds": 160.44073280000157,
+  "processing_seconds": 261.2122823999998,
   "repeat": 2,
   "exit_code": 0,
-  "wall_seconds": 161.50220879999688,
-  "peak_rss_bytes": 473591808,
-  "peak_private_bytes": 984023040,
+  "wall_seconds": 262.9455467000007,
+  "peak_rss_bytes": 485588992,
+  "peak_private_bytes": 862973952,
   "sample_interval_seconds": 0.1,
-  "memory_samples": 1480
+  "memory_samples": 2386
 }

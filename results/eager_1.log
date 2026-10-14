@@ -1,24 +1,25 @@
-MemoryError
-
-During handling of the above exception, another exception occurred:
-
-MemoryError
-
-During handling of the above exception, another exception occurred:
-
-MemoryError
-
-During handling of the above exception, another exception occurred:
-
 Traceback (most recent call last):
-  File ".\benchmark.py", line 61, in worker
+  File "D:\mallol tp\benchmark.py", line 61, in worker
     record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))
                   ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File ".\analysis.py", line 64, in eager
+  File "D:\mallol tp\analysis.py", line 63, in eager
     table = pd.read_csv(path, **full_options)
-  File ".\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 872, in read_csv
+  File "D:\mallol tp\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 872, in read_csv
     return _read(filepath_or_buffer, kwds)
-  File ".\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 306, in _read
+  File "D:\mallol tp\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 306, in _read
     return parser.read(nrows)
            ~~~~~~~~~~~^^^^^^^
-MemoryError
+  File "D:\mallol tp\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1950, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "D:\mallol tp\.venv\Lib\site-packages\pandas\io\parsers\python_parser.py", line 279, in read
+    content = self._get_lines(rows)
+  File "D:\mallol tp\.venv\Lib\site-packages\pandas\io\parsers\python_parser.py", line 1316, in _get_lines
+    next_row = self._next_iter_line(row_num=self.pos + rows + 1)
+  File "D:\mallol tp\.venv\Lib\site-packages\pandas\io\parsers\python_parser.py", line 989, in _next_iter_line
+    line = next(self.data)
+OSError: [Errno 22] Invalid argument

@@ -1,6 +1,6 @@
 {
   "method": "stream",
-  "budget_mib": 2048,
+  "budget_mib": 8192,
   "status": "ok",
   "summary": {
     "rows": 55423856,
@@ -136,12 +136,12 @@
   "chunks": 555,
   "largest_chunk_rows": 100000,
   "chunksize": 100000,
-  "processing_seconds": 65.44659169999795,
+  "processing_seconds": 94.35639420000007,
   "repeat": 3,
   "exit_code": 0,
-  "wall_seconds": 66.43220629999996,
-  "peak_rss_bytes": 161587200,
-  "peak_private_bytes": 649097216,
+  "wall_seconds": 96.51401149999947,
+  "peak_rss_bytes": 167944192,
+  "peak_private_bytes": 520581120,
   "sample_interval_seconds": 0.1,
-  "memory_samples": 611
+  "memory_samples": 878
 }

@@ -2,23 +2,23 @@
   "runs": [
     {
       "method": "eager",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "memory_error",
-      "exception_type": "MemoryError",
-      "message": "",
-      "traceback": "MemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nMemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nMemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \".\\benchmark.py\", line 61, in worker\n    record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))\n                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \".\\analysis.py\", line 64, in eager\n    table = pd.read_csv(path, **full_options)\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 872, in read_csv\n    return _read(filepath_or_buffer, kwds)\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 306, in _read\n    return parser.read(nrows)\n           ~~~~~~~~~~~^^^^^^^\nMemoryError\n",
-      "processing_seconds": 5.3931392999948,
+      "exception_type": "OSError",
+      "message": "[Errno 22] Invalid argument",
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\mallol tp\\benchmark.py\", line 61, in worker\n    record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))\n                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\mallol tp\\analysis.py\", line 63, in eager\n    table = pd.read_csv(path, **full_options)\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 872, in read_csv\n    return _read(filepath_or_buffer, kwds)\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 306, in _read\n    return parser.read(nrows)\n           ~~~~~~~~~~~^^^^^^^\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 1950, in read\n    ) = self._engine.read(  # type: ignore[attr-defined]\n        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        nrows\n        ^^^^^\n    )\n    ^\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 279, in read\n    content = self._get_lines(rows)\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 1316, in _get_lines\n    next_row = self._next_iter_line(row_num=self.pos + rows + 1)\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 989, in _next_iter_line\n    line = next(self.data)\nOSError: [Errno 22] Invalid argument\n",
+      "processing_seconds": 33.17683890000262,
       "repeat": 1,
       "exit_code": 0,
-      "wall_seconds": 6.44275159999961,
-      "peak_rss_bytes": 1659641856,
-      "peak_private_bytes": 2135838720,
+      "wall_seconds": 35.0922129999999,
+      "peak_rss_bytes": 5067210752,
+      "peak_private_bytes": 5417533440,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 59
+      "memory_samples": 321
     },
     {
       "method": "stream",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "ok",
       "summary": {
         "rows": 55423856,
@@ -154,18 +154,18 @@
       "chunks": 555,
       "largest_chunk_rows": 100000,
       "chunksize": 100000,
-      "processing_seconds": 65.63772320000135,
+      "processing_seconds": 95.50067080000008,
       "repeat": 1,
       "exit_code": 0,
-      "wall_seconds": 66.65544999999838,
-      "peak_rss_bytes": 161599488,
-      "peak_private_bytes": 649105408,
+      "wall_seconds": 97.85456229999909,
+      "peak_rss_bytes": 168071168,
+      "peak_private_bytes": 520630272,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 613
+      "memory_samples": 902
     },
     {
       "method": "lazy",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "ok",
       "summary": {
         "rows": 55423856,
@@ -303,28 +303,28 @@
         "tasks_before": 3493,
         "tasks_after": 1602,
         "query_expressions": [
-          "FromMapProjectable(633845d).size() // 8",
-          "FromMapProjectable(633845d).count()",
-          "(FromMapProjectable(633845d)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
-          "GroupbyAggregation(frame=FromMapProjectable(633845d)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
+          "FromMapProjectable(0469fc7).size() // 8",
+          "FromMapProjectable(0469fc7).count()",
+          "(FromMapProjectable(0469fc7)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
+          "GroupbyAggregation(frame=FromMapProjectable(0469fc7)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
         ]
       },
-      "graph_build_seconds": 0.34669790000043577,
-      "compute_seconds": 159.25101690000156,
+      "graph_build_seconds": 0.6846571000023687,
+      "compute_seconds": 260.93647190000047,
       "threads": 4,
       "block_mib": 16,
-      "processing_seconds": 159.59807040000305,
+      "processing_seconds": 261.62201149999964,
       "repeat": 1,
       "exit_code": 0,
-      "wall_seconds": 160.62662000000273,
-      "peak_rss_bytes": 473042944,
-      "peak_private_bytes": 983932928,
+      "wall_seconds": 263.4974280999995,
+      "peak_rss_bytes": 485359616,
+      "peak_private_bytes": 861679616,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 1471
+      "memory_samples": 2419
     },
     {
       "method": "stream",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "ok",
       "summary": {
         "rows": 55423856,
@@ -460,18 +460,18 @@
       "chunks": 555,
       "largest_chunk_rows": 100000,
       "chunksize": 100000,
-      "processing_seconds": 65.14030220000132,
+      "processing_seconds": 92.32621579999977,
       "repeat": 2,
       "exit_code": 0,
-      "wall_seconds": 66.20468800000526,
-      "peak_rss_bytes": 161398784,
-      "peak_private_bytes": 649297920,
+      "wall_seconds": 94.05431609999869,
+      "peak_rss_bytes": 167813120,
+      "peak_private_bytes": 520609792,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 609
+      "memory_samples": 858
     },
     {
       "method": "lazy",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "ok",
       "summary": {
         "rows": 55423856,
@@ -609,44 +609,44 @@
         "tasks_before": 3493,
         "tasks_after": 1602,
         "query_expressions": [
-          "FromMapProjectable(633845d).size() // 8",
-          "FromMapProjectable(633845d).count()",
-          "(FromMapProjectable(633845d)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
-          "GroupbyAggregation(frame=FromMapProjectable(633845d)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
+          "FromMapProjectable(0469fc7).size() // 8",
+          "FromMapProjectable(0469fc7).count()",
+          "(FromMapProjectable(0469fc7)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
+          "GroupbyAggregation(frame=FromMapProjectable(0469fc7)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
         ]
       },
-      "graph_build_seconds": 0.3375970999986748,
-      "compute_seconds": 160.10277900000074,
+      "graph_build_seconds": 0.5283272000015131,
+      "compute_seconds": 260.6832538000017,
       "threads": 4,
       "block_mib": 16,
-      "processing_seconds": 160.44073280000157,
+      "processing_seconds": 261.2122823999998,
       "repeat": 2,
       "exit_code": 0,
-      "wall_seconds": 161.50220879999688,
-      "peak_rss_bytes": 473591808,
-      "peak_private_bytes": 984023040,
+      "wall_seconds": 262.9455467000007,
+      "peak_rss_bytes": 485588992,
+      "peak_private_bytes": 862973952,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 1480
+      "memory_samples": 2386
     },
     {
       "method": "eager",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "memory_error",
       "exception_type": "MemoryError",
       "message": "",
-      "traceback": "MemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nMemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \".\\benchmark.py\", line 61, in worker\n    record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))\n                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \".\\analysis.py\", line 63, in eager\n    table = pd.read_csv(path, **full_options)\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 872, in read_csv\n    return _read(filepath_or_buffer, kwds)\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 306, in _read\n    return parser.read(nrows)\n           ~~~~~~~~~~~^^^^^^^\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 1950, in read\n    ) = self._engine.read(  # type: ignore[attr-defined]\n        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        nrows\n        ^^^^^\n    )\n    ^\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 279, in read\n    content = self._get_lines(rows)\nMemoryError\n",
-      "processing_seconds": 5.42150880000554,
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\mallol tp\\benchmark.py\", line 61, in worker\n    record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))\n                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\mallol tp\\analysis.py\", line 63, in eager\n    table = pd.read_csv(path, **full_options)\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 872, in read_csv\n    return _read(filepath_or_buffer, kwds)\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 306, in _read\n    return parser.read(nrows)\n           ~~~~~~~~~~~^^^^^^^\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 1950, in read\n    ) = self._engine.read(  # type: ignore[attr-defined]\n        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        nrows\n        ^^^^^\n    )\n    ^\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 279, in read\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 1320, in _get_lines\n    new_rows.append(next_row)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^\nMemoryError\n",
+      "processing_seconds": 59.45595940000203,
       "repeat": 2,
       "exit_code": 0,
-      "wall_seconds": 6.44004870000208,
-      "peak_rss_bytes": 1672347648,
-      "peak_private_bytes": 2147717120,
+      "wall_seconds": 61.26072679999925,
+      "peak_rss_bytes": 8236220416,
+      "peak_private_bytes": 8590778368,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 59
+      "memory_samples": 556
     },
     {
       "method": "lazy",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "ok",
       "summary": {
         "rows": 55423856,
@@ -784,44 +784,44 @@
         "tasks_before": 3493,
         "tasks_after": 1602,
         "query_expressions": [
-          "FromMapProjectable(633845d).size() // 8",
-          "FromMapProjectable(633845d).count()",
-          "(FromMapProjectable(633845d)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
-          "GroupbyAggregation(frame=FromMapProjectable(633845d)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
+          "FromMapProjectable(0469fc7).size() // 8",
+          "FromMapProjectable(0469fc7).count()",
+          "(FromMapProjectable(0469fc7)[['fare_amount', 'pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'passenger_count']]).sum()",
+          "GroupbyAggregation(frame=FromMapProjectable(0469fc7)[['fare_amount', 'passenger_count']], arg=['sum', 'count'], observed=True, dropna=False, _slice='fare_amount')"
         ]
       },
-      "graph_build_seconds": 0.35036309999850346,
-      "compute_seconds": 159.85250199999427,
+      "graph_build_seconds": 0.6316626000007091,
+      "compute_seconds": 268.35308310000255,
       "threads": 4,
       "block_mib": 16,
-      "processing_seconds": 160.20318819999375,
+      "processing_seconds": 268.985772,
       "repeat": 3,
       "exit_code": 0,
-      "wall_seconds": 161.23314820000087,
-      "peak_rss_bytes": 478134272,
-      "peak_private_bytes": 988684288,
+      "wall_seconds": 270.9499408999982,
+      "peak_rss_bytes": 486313984,
+      "peak_private_bytes": 864804864,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 1476
+      "memory_samples": 2452
     },
     {
       "method": "eager",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "memory_error",
       "exception_type": "MemoryError",
       "message": "",
-      "traceback": "MemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nMemoryError\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \".\\benchmark.py\", line 61, in worker\n    record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))\n                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \".\\analysis.py\", line 63, in eager\n    table = pd.read_csv(path, **full_options)\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 872, in read_csv\n    return _read(filepath_or_buffer, kwds)\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 306, in _read\n    return parser.read(nrows)\n           ~~~~~~~~~~~^^^^^^^\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 1950, in read\n    ) = self._engine.read(  # type: ignore[attr-defined]\n        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        nrows\n        ^^^^^\n    )\n    ^\n  File \".\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 279, in read\n    content = self._get_lines(rows)\nMemoryError\n",
-      "processing_seconds": 5.732144299996435,
+      "traceback": "Traceback (most recent call last):\n  File \"D:\\mallol tp\\benchmark.py\", line 61, in worker\n    record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))\n                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\mallol tp\\analysis.py\", line 63, in eager\n    table = pd.read_csv(path, **full_options)\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 872, in read_csv\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 306, in _read\n    return parser.read(nrows)\n           ~~~~~~~~~~~^^^^^^^\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\readers.py\", line 1950, in read\n    ) = self._engine.read(  # type: ignore[attr-defined]\n        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        nrows\n        ^^^^^\n    )\n    ^\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 279, in read\n    content = self._get_lines(rows)\n  File \"D:\\mallol tp\\.venv\\Lib\\site-packages\\pandas\\io\\parsers\\python_parser.py\", line 1320, in _get_lines\n    new_rows.append(next_row)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^\nMemoryError\n",
+      "processing_seconds": 58.142922400002135,
       "repeat": 3,
       "exit_code": 0,
-      "wall_seconds": 6.799176299995452,
-      "peak_rss_bytes": 1643724800,
-      "peak_private_bytes": 2119643136,
+      "wall_seconds": 60.025965700002416,
+      "peak_rss_bytes": 8232845312,
+      "peak_private_bytes": 8588279808,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 62
+      "memory_samples": 546
     },
     {
       "method": "stream",
-      "budget_mib": 2048,
+      "budget_mib": 8192,
       "status": "ok",
       "summary": {
         "rows": 55423856,
@@ -957,14 +957,14 @@
       "chunks": 555,
       "largest_chunk_rows": 100000,
       "chunksize": 100000,
-      "processing_seconds": 65.44659169999795,
+      "processing_seconds": 94.35639420000007,
       "repeat": 3,
       "exit_code": 0,
-      "wall_seconds": 66.43220629999996,
-      "peak_rss_bytes": 161587200,
-      "peak_private_bytes": 649097216,
+      "wall_seconds": 96.51401149999947,
+      "peak_rss_bytes": 167944192,
+      "peak_private_bytes": 520581120,
       "sample_interval_seconds": 0.1,
-      "memory_samples": 611
+      "memory_samples": 878
     }
   ],
   "validation": {

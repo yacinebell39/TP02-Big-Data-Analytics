@@ -166,7 +166,7 @@ def main():
     new_page()
     title('01 / Methods and controls')
     heading('Task 1 - full Pandas loading')
-    paragraph('analysis.eager calls pd.read_csv on the entire CSV before computing the aggregates. It uses the Python parser because two preliminary full-load trials with the C parser exited with native Windows access-violation status under the cap, without a Python traceback. The exact native cause is not established. Each strategy runs in a fresh process. A Windows Job Object imposes the same 2,048 MiB committed-memory budget on every measured worker, so the full-load attempt demonstrates a real allocation failure without exhausting the whole computer.')
+    paragraph(f"analysis.eager calls pd.read_csv on the entire CSV before computing the aggregates. It uses the Python parser because two preliminary full-load trials with the C parser exited with native Windows access-violation status under the cap, without a Python traceback. The exact native cause is not established. Each strategy runs in a fresh process. A Windows Job Object imposes the same {environment['budget_mib']:,} MiB committed-memory budget on every measured worker, so the full-load attempt demonstrates a real allocation failure without exhausting the whole computer.")
     failures = [r for r in runs if r['method']=='eager' and r['status']=='memory_error']
     if failures:
         paragraph(f"Observed outcome: MemoryError in {len(failures)} of {environment['repeats']} full-load attempts. The exact exception and traceback are retained in results/eager_*.json and results/eager_*.log. The duration is time until failure, not time to process all rows.")
@@ -180,7 +180,7 @@ def main():
     heading('Task 3 - lazy parallel Dask')
     paragraph(f"Dask reads the CSV in {environment['block_mib']} MiB blocks, builds reductions without materializing the complete table, and executes them with {environment['threads']} threads. The graph is explicitly optimized before compute. All eight columns contribute to valid counts, so the aggregate workload includes the complete schema.")
     heading('Fair measurement and practical limits')
-    paragraph(f"Machine: {environment['total_ram_bytes']/1024**3:.2f} GiB total RAM, {environment['cpu_physical']} physical / {environment['cpu_logical']} logical CPU cores. The 2 GiB budget is a controlled process allocation limit, not this machine's physical memory capacity. Full Pandas may succeed if that limit is removed.")
+    paragraph(f"Machine: {environment['total_ram_bytes']/1024**3:.2f} GiB total RAM, {environment['cpu_physical']} physical / {environment['cpu_logical']} logical CPU cores. The {environment['budget_mib']/1024:.0f} GiB budget is a controlled process allocation limit, not this machine's physical memory capacity. Full Pandas may succeed if that limit is removed.")
     paragraph('Processing time excludes startup and imports, includes parsing and aggregation, and includes graph construction for Dask. psutil samples process-tree RSS and private memory every 100 ms, including imports. A launcher may cause double counting of shared pages. Sampled peaks can miss short spikes. Completed speed comparison is between chunking and Dask, which share the C parser; full-load time is time to failure using the Python parser.')
     new_page()
     title('02 / Performance benchmark')
@@ -237,7 +237,7 @@ def main():
     heading('Run from the project directory')
     for command in ['python -m venv .venv', '.\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt',
                     '.\\.venv\\Scripts\\python.exe prepare.py', '.\\.venv\\Scripts\\python.exe -m unittest test_analysis -v',
-                    f".\\.venv\\Scripts\\python.exe benchmark.py --repeats 3 --budget-mib 2048 --threads 4 --block-mib {environment['block_mib']}",
+                    f".\\.venv\\Scripts\\python.exe benchmark.py --repeats 3 --budget-mib {environment['budget_mib']} --threads {environment['threads']} --block-mib {environment['block_mib']}",
                     '.\\.venv\\Scripts\\python.exe report.py']:
         paragraph(command, 'SmallText')
     paragraph('Download the full Kaggle competition ZIP into data/ first. Sign in and accept the competition rules on your own account. prepare.py extracts only train.csv and verifies size, header, CRC during extraction, SHA-256 and row count. Existing files are reverified. The exact installed environment is also recorded in requirements.lock.txt.')

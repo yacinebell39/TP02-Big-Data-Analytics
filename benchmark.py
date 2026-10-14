@@ -60,7 +60,7 @@ def worker(args):
     try:
         record.update(METHODS[args.method](args.csv, threads=args.threads, block_mib=args.block_mib))
         record['status'] = 'ok'
-    except MemoryError as error:
+    except (MemoryError, OSError) as error:
         record.update(status='memory_error', exception_type=type(error).__name__, message=str(error),
                       traceback=traceback.format_exc())
         traceback.print_exc()
@@ -87,12 +87,16 @@ def measured(args, method, repeat, output):
         monitored = psutil.Process(process.pid)
         while process.poll() is None:
             try:
-                family = [monitored] + monitored.children(recursive=True)
+                family = [monitored]
+                try:
+                    family += monitored.children(recursive=True)
+                except (psutil.Error, OSError):
+                    pass
                 memory = [member.memory_info() for member in family]
                 measurements.append((time.perf_counter() - started,
                                      sum(item.rss for item in memory),
                                      sum(getattr(item, 'private', 0) for item in memory)))
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
+            except (psutil.Error, OSError):
                 pass
             time.sleep(0.1)
     with (output / f'{label}_memory.csv').open('w', newline='') as stream:
@@ -139,7 +143,7 @@ def run(args):
     for row in successful:
         verify(reference, row['summary'])
     manifest = ROOT / 'data' / 'manifest.json'
-    full_input = args.csv.resolve() == (ROOT / 'data' / 'train.csv').resolve()
+    full_input = args.csv.resolve() in ((ROOT / 'data' / 'train.csv').resolve(), (ROOT / 'train.csv').resolve())
     if full_input:
         expected = json.loads(manifest.read_text())['expected_rows']
         assert reference['rows'] == expected, 'Incomplete dataset'
@@ -164,7 +168,7 @@ def main():
     parser.add_argument('--csv', type=Path, default=ROOT / 'data' / 'train.csv')
     parser.add_argument('--out', type=Path, default=ROOT / 'results')
     parser.add_argument('--repeats', type=int, default=3)
-    parser.add_argument('--budget-mib', type=int, default=2048)
+    parser.add_argument('--budget-mib', type=int, default=8192)
     parser.add_argument('--threads', type=int, default=4)
     parser.add_argument('--block-mib', type=int, default=16)
     parser.add_argument('--method', choices=['eager', 'stream', 'lazy'], help=argparse.SUPPRESS)

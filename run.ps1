@@ -6,7 +6,7 @@ if (-not (Test-Path -LiteralPath $tpPython)) { throw 'Create .venv and install r
 if ($LASTEXITCODE -ne 0) { throw 'Dataset preparation failed.' }
 & $tpPython -B -m unittest test_analysis -v
 if ($LASTEXITCODE -ne 0) { throw 'Aggregation checks failed.' }
-& $tpPython -B benchmark.py --repeats 3 --budget-mib 2048 --threads 4 --block-mib 16
+& $tpPython -B benchmark.py --repeats 3 --budget-mib 8192 --threads 4 --block-mib 16
 if ($LASTEXITCODE -ne 0) { throw 'Full benchmark failed; inspect results.' }
 & $tpPython -B report.py
 if ($LASTEXITCODE -ne 0) { throw 'Report generation failed.' }

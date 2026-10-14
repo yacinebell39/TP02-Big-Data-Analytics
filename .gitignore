@@ -4,5 +4,6 @@ data/*.csv
 data/*.zip
 *.zip
 data/*.part
+train.csv
 report/preview/
 results/check/
